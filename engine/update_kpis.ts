@@ -342,7 +342,11 @@ export async function updateKpis(): Promise<KpiSnapshot> {
   return snapshot;
 }
 
-updateKpis().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+const isCliRun = process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).href;
+
+if (isCliRun) {
+  updateKpis().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}
