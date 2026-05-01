@@ -18,7 +18,7 @@ function pct(value: number) {
 }
 
 function MiniLine({ values }: { values: number[] }) {
-  if (values.length === 0) return <div className="h-24 rounded-xl bg-zinc-800/60" />;
+  if (values.length === 0) return <div className="h-24 rounded-xl bg-eki-surface-alt/60" />;
 
   const width = 420;
   const height = 110;
@@ -35,7 +35,7 @@ function MiniLine({ values }: { values: number[] }) {
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} className="h-28 w-full overflow-visible">
-      <polyline points={points} fill="none" stroke="#B66E3F" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      <polyline points={points} fill="none" stroke="var(--color-accent-copper)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -45,10 +45,10 @@ export default async function DashboardPage() {
 
   if (!latest) {
     return (
-      <main className="min-h-screen bg-eki-background px-6 py-10 text-zinc-100">
+      <main className="min-h-screen bg-eki-background px-6 py-10 text-eki-text">
         <section className="mx-auto max-w-7xl rounded-3xl border border-eki-border bg-eki-card p-8">
           <h1 className="text-3xl font-bold">EKI PRO Investment Dashboard</h1>
-          <p className="mt-3 text-zinc-400">Tietokannassa ei ole vielä KPI-dataa.</p>
+          <p className="mt-3 text-eki-muted">Tietokannassa ei ole vielä KPI-dataa.</p>
           <a href="/api/engine/update" className="mt-6 inline-flex rounded-xl bg-eki-copper px-5 py-3 font-semibold text-white">
             Käynnistä ensimmäinen päivitys
           </a>
@@ -61,24 +61,24 @@ export default async function DashboardPage() {
   const isRiskLimited = latest.strategyMode === 'LIMITED';
 
   return (
-    <main className="min-h-screen bg-eki-background px-4 py-6 text-zinc-100 md:px-8 md:py-10">
+    <main className="min-h-screen bg-eki-background px-4 py-6 text-eki-text md:px-8 md:py-10">
       <section className="mx-auto max-w-7xl space-y-6">
-        <header className="flex flex-col justify-between gap-4 rounded-3xl border border-eki-border bg-gradient-to-br from-eki-card to-zinc-900 p-6 md:flex-row md:items-center">
+        <header className="flex flex-col justify-between gap-4 rounded-3xl border border-eki-border bg-gradient-to-br from-eki-card to-eki-surface-alt p-6 md:flex-row md:items-center">
           <div>
             <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.25em] text-eki-copper">
               <Activity size={18} /> EKI PRO
             </div>
             <h1 className="mt-3 text-3xl font-bold md:text-5xl">Investment Dashboard</h1>
-            <p className="mt-2 text-zinc-400">CoinGecko + Neon Postgres + Next.js 14</p>
+            <p className="mt-2 text-eki-muted">CoinGecko + Neon Postgres + Next.js 14</p>
           </div>
-          <div className="rounded-2xl border border-eki-border bg-black/20 px-5 py-4 text-sm text-zinc-400">
+          <div className="rounded-2xl border border-eki-border bg-eki-surface-alt/20 px-5 py-4 text-sm text-eki-muted">
             <div>Viimeisin snapshot</div>
-            <div className="mt-1 font-mono text-zinc-100">{new Date(latest.timestamp).toLocaleString('fi-FI')}</div>
+            <div className="mt-1 font-mono text-eki-text">{new Date(latest.timestamp).toLocaleString('fi-FI')}</div>
           </div>
         </header>
 
         {isRiskLimited ? (
-          <div className="flex items-center gap-3 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4 text-amber-200">
+          <div className="flex items-center gap-3 rounded-2xl border border-status-warning-border bg-status-warning-soft p-4 text-status-warning">
             <AlertTriangle size={20} /> Riskitila LIMITED: CoinGecko-data on yli 30 minuuttia vanhaa tai osittain puuttuvaa.
           </div>
         ) : null}
@@ -100,9 +100,9 @@ export default async function DashboardPage() {
           <div className="flex items-center justify-between gap-4">
             <div>
               <h2 className="text-xl font-semibold">NAV-historia</h2>
-              <p className="text-sm text-zinc-400">Viimeiset {history.length} snapshotia</p>
+              <p className="text-sm text-eki-muted">Viimeiset {history.length} snapshotia</p>
             </div>
-            <a href="/api/engine/update" className="inline-flex items-center gap-2 rounded-xl border border-eki-border px-4 py-2 text-sm text-zinc-300 hover:border-eki-copper hover:text-white">
+            <a href="/api/engine/update" className="inline-flex items-center gap-2 rounded-xl border border-eki-border px-4 py-2 text-sm text-eki-muted hover:border-eki-copper hover:text-white">
               <RefreshCw size={16} /> Päivitä
             </a>
           </div>
