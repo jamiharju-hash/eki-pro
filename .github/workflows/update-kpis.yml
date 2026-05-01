@@ -1,0 +1,16 @@
+name: Update EKI PRO KPIs
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  call-engine:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call deployed KPI engine
+        run: |
+          curl --fail --show-error --location --request POST "${APP_URL}/api/engine/update"
+        env:
+          APP_URL: ${{ secrets.APP_URL }}
