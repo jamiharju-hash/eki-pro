@@ -1,5 +1,5 @@
 {
-  "name": "eki-pro-investment-dashboard",
+  "name": "eki-rakennus-mobile-webapp",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -11,8 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^0.10.4",
-    "drizzle-orm": "^0.38.4",
+    "@supabase/supabase-js": "^2.47.10",
     "lucide-react": "^0.546.0",
     "next": "14.2.23",
     "react": "^18.3.1",
